@@ -153,8 +153,13 @@ function addBlip(color, url, minlatency) {
   blips.push({color: color, url: url, minlatency: minlatency});
 };
 
+window.badBlips = []
 function gotBlip(color, url, minlatency, startTime) {
   const endTime = now();
+  let msecs = endTime - startTime;
+  if (msecs >= msecMax){
+    window.badBlips.push(new Date());
+  }
   const blipWidth = url ? 1 : 3;
   c1.drawBlip(color, startTime, endTime, minlatency, blipWidth);
   c2.drawBlip(color, startTime, endTime, minlatency, blipWidth);
@@ -231,7 +236,7 @@ function gotTick() {
       c3.nextX(tdiff);
       lastTick = t;
     }
-    bestNextFrame(gotTick);
+    
   }
 };
 
@@ -241,7 +246,7 @@ function toggleBlip() {
   } else {
     running = 1;
     lastTick = now();
-    bestNextFrame(gotTick);
+    //bestNextFrame(gotTick);
   }
 };
 
@@ -449,7 +454,7 @@ async function start() {
   addBlip(dnsColor, null, 5);
 
   // this starts the polling and animation
-  bestNextFrame(gotTick);
+  window.tickerInterval = setInterval(gotTick, 1000);
 
   // this will async add the "local-ish" blip
   await pickLocalSite();
