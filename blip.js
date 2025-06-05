@@ -462,3 +462,27 @@ async function start() {
   // this will async add the "Internet" blip
   await pickMlabSite();
 }
+
+function badPeriods(badBlips){
+ var bad_periods = [];
+ var current_period_start;
+ var previous;
+ 
+ badBlips.map((blip) => blip.getTime())
+ .forEach(blip => {
+    if(!previous){
+       previous = blip;
+       current_period_start = blip;
+       
+    }
+    else if((blip - previous) > 1000 * 60 * 5){
+       bad_periods.push([current_period_start, previous]);
+       current_period_start = blip;
+       previous = blip;
+    }
+    else {
+       previous = blip;
+    }
+ });
+ return JSON.stringify(bad_periods);
+}
