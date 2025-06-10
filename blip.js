@@ -484,5 +484,21 @@ function badPeriods(badBlips){
        previous = blip;
     }
  });
- return JSON.stringify(bad_periods);
+ return bad_periods;
 }
+
+function badPeriodsRead(periods){
+  
+  var strs = periods.map(function(p){
+     var [start, end] = p; 
+     return "from "+ new Date(start)+ " to "+ new Date(end)+" and "
+  });
+  return strs.join();
+}
+
+function onClickPrint(){
+  var periods = badPeriods(badBlips);
+  console.log("bad periods: "+badPeriodsRead(periods));
+}
+
+
