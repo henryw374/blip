@@ -4,7 +4,7 @@ Tip:
 ----
 
 On your PC, laptop, tablet, phone, or iPod, try adding a
-bookmark to http://gfblip.appspot.com/ to your home screen
+bookmark to https://widdindustries.com/blip/ to your home screen
 for easy access.
 
 <img src="qr.png">
@@ -13,7 +13,7 @@ for easy access.
 Too long, don't read:
 ---------------------
 
- - Go to http://gfblip.appspot.com/
+ - Go to https://widdindustries.com/blip/
 
  - It should work on any PC, laptop, tablet, phone, or iPod
    with javascript and HTML canvas support (which means
